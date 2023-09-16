@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jQuery.js"></script>
+    <title>Aplikasi Web Sederhana</title>
+    <style>
+        body {
+            background-color: cadetblue;
+        }
+        #container {
+            color: white;
+            font-family: cursive;
+            font-weight: bold;
+            text-align: center;
+            margin: 50px;
+        }
+        #result {
+            font-size: 24px;
+            color: white;
+            font-family: cursive;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>Aplikasi Web Sederhana</h1>
+        <p>Masukkan sebuah angka:</p>
+        <input type="number" id="inputNumber">
+        <button id="checkButton">Cek</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+
+        // Variabel
+        var inputElement = document.getElementById('inputNumber');
+        var resultElement = document.getElementById('result');
+
+        // Fungsi
+        function cekAngka() {
+            var angka = parseInt(inputElement.value);
+
+            // Blok kondisional
+            if (!isNaN(angka)) {
+                if (angka % 2 === 0) {
+                    resultElement.innerText = 'Iya Bener, Angka ' + angka + ' adalah bilangan genap.';
+                } else {
+                    resultElement.innerText = 'Iya Bener, Angka ' + angka + ' adalah bilangan ganjil.';
+                }
+            } else {
+                resultElement.innerText = 'Masukkan angka yang valid.';
+            }
+        }
+
+        // jQuery events dan DOM manipulation
+        $(document).ready(function () {
+            $('#checkButton').click(function () {
+                cekAngka();
+                alert("Apakah ini angka Genap / Ganjil ?");
+            });
+
+            $('#inputNumber').keypress(function (event) {
+                if (event.which === 13) { // Enter key
+                    cekAngka();
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
